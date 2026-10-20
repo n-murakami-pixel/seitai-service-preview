@@ -1,1 +1,0 @@
-# seitai-service-preview
