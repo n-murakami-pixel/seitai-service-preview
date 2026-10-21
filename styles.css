@@ -9,7 +9,7 @@
 /* Gentle, progressive motion. The static page is fully readable without JavaScript. */
 :root{--motion-ease:cubic-bezier(.22,.61,.36,1)}
 [data-booking-label]{font-size:inherit!important;font-weight:inherit!important;letter-spacing:inherit}
-.button{transition:background .24s,box-shadow .24s,transform .24s}.button>span:last-child,.header-cta>span:last-child,.mobile-booking a>span:last-child,.text-link>span{transition:transform .26s var(--motion-ease)}
+.button{transition:background .24s,box-shadow .24s,transform .24s}.button>[aria-hidden="true"],.header-cta>[aria-hidden="true"],.mobile-booking a>[aria-hidden="true"],.text-link>span{transition:transform .26s var(--motion-ease)}
 .button:hover>span:last-child,.header-cta:hover>span:last-child,.mobile-booking a:hover>span:last-child,.text-link:hover>span{transform:translate(3px,-3px)}
 .button:active,.header-cta:active,.mobile-booking a:active{transform:translateY(1px)}
 .header-cta{transition:background .24s,box-shadow .24s,transform .24s}.header-cta:hover{background:#284c3d;box-shadow:0 5px 18px #284c3d20;opacity:1}
@@ -107,3 +107,57 @@
 @media(max-width:650px){.concerns{padding:25px 0}.concerns ul.concern-examples{grid-template-columns:1fr;gap:27px}.concern-examples figure{display:grid;grid-template-columns:140px 1fr;align-items:center;gap:16px}.concern-examples figcaption{text-align:left;font-size:12px;margin:0}.concerns-note{text-align:left;font-size:9px}.profile-photo{max-width:280px}.profile-copy>p:not(.kicker){font-size:13px}.profile-photo figcaption{font-size:9px}.faq-title{font-size:27px!important}}
 @media(max-width:360px){.concern-examples figure{grid-template-columns:115px 1fr;gap:12px}.concern-examples figcaption{font-size:11px}}
 @media(max-width:650px) and (prefers-reduced-motion:no-preference){.hero-art-reveal>img{animation:hero-image-rise 1s var(--motion-ease) .25s backwards,hero-soft-float 7.5s ease-in-out 1.3s infinite}}
+
+/* Join the approach and care backgrounds without the old outer spacer or cream divider. */
+#about{padding-bottom:0;margin-bottom:0}
+#about + #care{margin-top:0;padding-top:40px}
+#about + #care:before{display:none}
+
+/* No icon slot: normal symmetric button padding, centered label and no artificial gap. */
+.site-header nav [data-booking-link],.hero [data-booking-link],.booking-area [data-booking-link],.mobile-booking [data-booking-link]{gap:0;justify-content:center}
+/* An absolute underline gives visible feedback without changing text or layout width. */
+a.text-link{position:relative;gap:0;min-height:44px;justify-content:center;border-bottom-color:transparent;color:var(--green);opacity:1;transition:color .24s ease}
+a.text-link:after{content:'';position:absolute;inset-inline:0;bottom:0;height:2px;background:currentColor;transform:scaleX(.3);transform-origin:left;transition:transform .24s var(--motion-ease)}
+a.text-link:hover,a.text-link:focus-visible{color:#6b8057;opacity:1}
+a.text-link:hover:after,a.text-link:focus-visible:after{transform:scaleX(1)}
+.motion-paused a.text-link,.motion-paused a.text-link:after{transition:none!important}
+@media(prefers-reduced-motion:reduce){a.text-link,a.text-link:after{transition:none!important}}
+
+/* Permanent baseline underline; animated overlay matches the header navigation. */
+a.text-link{border:0;border-radius:0;background:transparent;padding:10px 0;min-height:46px;font-size:12px;text-align:center;color:var(--green);box-shadow:none;text-decoration:none;transition:none}
+a.text-link:before{content:'';position:absolute;left:0;right:0;bottom:7px;height:1.5px;background:#9caa8b;pointer-events:none}
+a.text-link:after{display:block;content:'';position:absolute;left:0;right:0;bottom:7px;height:1px;background:#7d9571;transform:scaleX(0);transform-origin:left;transition:transform .3s var(--motion-ease);pointer-events:none}
+a.text-link:hover,a.text-link:focus-visible{background:transparent;border-color:transparent;color:var(--green);box-shadow:none;transition:none}
+a.text-link:hover{opacity:.82}
+a.text-link:hover:after,a.text-link:focus-visible:after{transform:scaleX(1)}
+/* Booking labels and link boxes stay still; only their separate border layer animates. */
+a[data-booking-link],a[data-booking-link] [data-booking-label]{transform:none!important;animation:none!important;transition:none!important;opacity:1!important}
+a[data-booking-link]{position:relative;isolation:isolate}
+a[data-booking-link]:after{content:'';position:absolute;inset:-3px;border:1px solid #8da177;border-radius:inherit;pointer-events:none;opacity:.65}
+a[data-booking-link]:hover:after,a[data-booking-link]:focus-visible:after,a[data-booking-link]:active:after{border-color:#b3c39d;opacity:1}
+a[data-booking-link].button-green:hover,a[data-booking-link].header-cta:hover,.mobile-booking a[data-booking-link]:hover{background:var(--green)}
+a[data-booking-link].button-cream:hover{background:#f3efdf}
+@keyframes booking-border-pulse{0%,100%{box-shadow:0 0 0 0 #8da17700;border-color:#8da177}50%{box-shadow:0 0 0 4px #8da17755;border-color:#b3c39d}}
+@media(prefers-reduced-motion:no-preference){a[data-booking-link]:hover:after,a[data-booking-link]:focus-visible:after{animation:booking-border-pulse 1.4s ease-in-out infinite}}
+.motion-paused a[data-booking-link]:after{animation:none!important;transition:none!important}
+@media(prefers-reduced-motion:reduce){a[data-booking-link]:after{animation:none!important;transition:none!important}a.text-link{transition:none!important}}
+
+/* Approach: tighter editorial rhythm and each illustration paired with its caption. */
+#about{padding-top:38px}
+#about>.section-label{margin-bottom:24px}
+#about .about-layout{grid-template-columns:.85fr 1.15fr;gap:48px;padding-left:0;align-items:start}
+#about .about-layout .kicker{margin-bottom:12px}
+#about .about-layout h2{margin-bottom:0;line-height:1.55}
+#about .about-text{padding-top:0;line-height:1.9}
+#about .about-text .body-lead{font-size:20px;line-height:1.75;margin-bottom:16px}
+#about .about-text p:not(.body-lead){margin-bottom:12px}
+#about .about-text p:last-child{margin-bottom:0}
+#about .concerns{margin-top:26px;padding:20px 0 18px}
+#about .concerns>p{margin-bottom:14px}
+#about .concerns ul.concern-examples{gap:24px}
+#about .concern-examples figure{display:grid;grid-template-columns:160px minmax(0,1fr);gap:14px;align-items:center}
+#about .concern-examples img{width:100%;max-width:160px;height:auto;margin:0}
+#about .concern-examples figcaption{text-align:left;margin:0;font-size:14px;line-height:1.75}
+#about .concerns-note{margin-top:12px}
+@media(min-width:651px) and (max-width:1100px){#about .about-layout{grid-template-columns:.85fr 1.15fr;gap:32px}#about .concern-examples figure{grid-template-columns:1fr;gap:8px}#about .concern-examples img{margin:auto}#about .concern-examples figcaption{text-align:center}}
+@media(max-width:650px){#about{padding-top:28px}#about>.section-label{margin-bottom:18px}#about .about-layout{display:grid;grid-template-columns:1fr;gap:12px}#about .about-layout .kicker{margin-bottom:10px}#about .about-layout h2{font-size:28px;line-height:1.5}#about .about-text{line-height:1.85}#about .about-text .body-lead{font-size:18px;line-height:1.65;margin-bottom:12px}#about .about-text p:not(.body-lead){margin-bottom:10px}#about .about-text p:last-child{margin-bottom:0}#about .concerns{margin-top:20px;padding:16px 0}#about .concerns>p{margin-bottom:12px}#about .concerns ul.concern-examples{gap:14px}#about .concern-examples figure{grid-template-columns:116px minmax(0,1fr);gap:14px}#about .concern-examples img{max-width:116px}#about .concern-examples figcaption{font-size:12px;line-height:1.75}}
