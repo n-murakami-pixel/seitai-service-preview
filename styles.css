@@ -161,3 +161,38 @@ a[data-booking-link].button-cream:hover{background:#f3efdf}
 #about .concerns-note{margin-top:12px}
 @media(min-width:651px) and (max-width:1100px){#about .about-layout{grid-template-columns:.85fr 1.15fr;gap:32px}#about .concern-examples figure{grid-template-columns:1fr;gap:8px}#about .concern-examples img{margin:auto}#about .concern-examples figcaption{text-align:center}}
 @media(max-width:650px){#about{padding-top:28px}#about>.section-label{margin-bottom:18px}#about .about-layout{display:grid;grid-template-columns:1fr;gap:12px}#about .about-layout .kicker{margin-bottom:10px}#about .about-layout h2{font-size:28px;line-height:1.5}#about .about-text{line-height:1.85}#about .about-text .body-lead{font-size:18px;line-height:1.65;margin-bottom:12px}#about .about-text p:not(.body-lead){margin-bottom:10px}#about .about-text p:last-child{margin-bottom:0}#about .concerns{margin-top:20px;padding:16px 0}#about .concerns>p{margin-bottom:12px}#about .concerns ul.concern-examples{gap:14px}#about .concern-examples figure{grid-template-columns:116px minmax(0,1fr);gap:14px}#about .concern-examples img{max-width:116px}#about .concern-examples figcaption{font-size:12px;line-height:1.75}}
+
+/* Mobile: keep the hero note outside the illustration motion envelope and center example pairs. */
+@media(max-width:650px){
+ .hero-art{margin:17px 0 0}
+ .hero-art .art-top-note{animation:none!important;position:static;writing-mode:horizontal-tb;text-align:center;font-size:11px;line-height:1.8;letter-spacing:.1em;margin:0 0 20px;padding:0 8px}
+ .hero-art-reveal{padding-top:8px}
+ #about .concerns ul.concern-examples{width:min(100%,274px);margin-inline:auto}
+ #about .concern-examples figure{grid-template-columns:clamp(96px,30vw,116px) minmax(0,1fr);justify-content:start;gap:18px}
+ #about .concern-examples img{max-width:116px}
+}
+
+/* Mobile reading sequence: copy, illustration, booking; desktop retains its two-column composition. */
+@media(max-width:650px){
+ .hero-copy{display:contents}
+ .hero-copy>.eyebrow{order:1}
+ .hero-copy>h1{order:2}
+ .hero-copy>.hero-description{order:3}
+ .hero>.hero-art{order:4;width:min(100%,330px);margin:0 0 20px}
+ .hero-art .art-label{position:static;display:block;text-align:right;margin-top:4px}
+ .hero-copy>[data-booking-link]{order:5;align-self:flex-start}
+ .hero-copy>.hero-note{order:6}
+ #about .concerns>p{width:min(100%,274px);margin-inline:auto;text-align:left}
+}
+
+/* Quiet section-heading accent, with no interactive styling. */
+#about .concerns>p{position:relative;padding-left:12px;color:var(--green);font-weight:600}
+#about .concerns>p:before{content:'';position:absolute;left:0;top:.4em;width:3px;height:1.1em;border-radius:2px;background:var(--green)}
+
+/* Mobile examples form one coherent block: divider, heading, list and note share a single edge. */
+@media(max-width:650px){
+ #about .concerns{width:min(100%,300px);margin:24px auto 0;padding:20px 0 16px}
+ #about .concerns>p{width:100%;margin:0 0 18px;line-height:1.6;text-align:left}
+ #about .concerns>p:before{top:.25em}
+ #about .concerns ul.concern-examples{width:100%;margin:0;gap:12px}
+}
